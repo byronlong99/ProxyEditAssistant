@@ -4,7 +4,7 @@ using MediaToolkit;
 using MediaToolkit.Model;
 using MediaToolkit.Options;
 
-namespace ConsoleApplication1
+namespace VideoProxyBuilder
 {
     public class Resolution
     {

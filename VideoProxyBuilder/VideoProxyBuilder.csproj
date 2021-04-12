@@ -7,8 +7,8 @@
         <ProjectGuid>{CDDF5990-2713-4E46-BBBA-F341B8D1CC7C}</ProjectGuid>
         <OutputType>Exe</OutputType>
         <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>ConsoleApplication1</RootNamespace>
-        <AssemblyName>ConsoleApplication1</AssemblyName>
+        <RootNamespace>VideoProxyBuilder</RootNamespace>
+        <AssemblyName>VideoProxyBuilder</AssemblyName>
         <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
     </PropertyGroup>

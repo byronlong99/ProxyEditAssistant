@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 
-namespace ConsoleApplication1
+namespace VideoProxyBuilder
 {
     public class FileListBuilder
     {

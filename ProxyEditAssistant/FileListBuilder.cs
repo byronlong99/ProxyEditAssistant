@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using ProxyEditAssistant.Common;
 
-namespace WpfApp1
+namespace ProxyEditAssistant
 {
     public class FileListBuilder
     {

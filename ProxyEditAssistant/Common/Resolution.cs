@@ -1,4 +1,4 @@
-﻿namespace WpfApp1
+﻿namespace ProxyEditAssistant.Common
 {
     public class Resolution
     {

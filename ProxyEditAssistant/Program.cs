@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using MediaToolkit;
 using MediaToolkit.Model;
 using MediaToolkit.Options;
+using ProxyEditAssistant.Common;
 
-namespace WpfApp1
+namespace ProxyEditAssistant
 {
     public class Program
     {

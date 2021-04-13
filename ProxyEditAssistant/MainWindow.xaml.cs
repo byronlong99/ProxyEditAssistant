@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace WpfApp1
+namespace ProxyEditAssistant
 {
     public partial class MainWindow
     {

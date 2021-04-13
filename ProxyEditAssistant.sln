@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp1", "WpfApp1\WpfApp1.csproj", "{BA0FA46F-6B6B-4BF0-B4B1-1A92CEECB780}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProxyEditAssistant", "ProxyEditAssistant\ProxyEditAssistant.csproj", "{BA0FA46F-6B6B-4BF0-B4B1-1A92CEECB780}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

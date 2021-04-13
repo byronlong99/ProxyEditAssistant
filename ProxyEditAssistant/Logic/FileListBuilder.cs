@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using ProxyEditAssistant.Common;
 
-namespace ProxyEditAssistant
+namespace ProxyEditAssistant.Logic
 {
     public class FileListBuilder
     {

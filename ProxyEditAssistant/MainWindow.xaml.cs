@@ -1,20 +1,22 @@
 ﻿using System.Windows;
 using ProxyEditAssistant.Logic;
+using ProxyEditAssistant.Models;
 
 namespace ProxyEditAssistant
 {
     public partial class MainWindow
     {
+        public MainScreenModel Model { get; set; }
+        
         public MainWindow()
         {
             InitializeComponent();
+            Model = new MainScreenModel();
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            var program = new ProxyBuilder();
-            
-            program.BuildProxies();
+            Model.GenerateProxies();
         }
     }
 }

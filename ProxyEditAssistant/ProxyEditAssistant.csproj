@@ -10,4 +10,23 @@
       <PackageReference Include="MediaToolkit" Version="1.1.0.1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="TestVideos\Source\Folder 1\DJI_0215.MP4">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="TestVideos\Source\Folder 1\DJI_0216.MP4">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="TestVideos\Source\Folder 2\DJI_0218.MP4">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="TestVideos\Source\Folder 2\DJI_0225.MP4">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Models" />
+    </ItemGroup>
+
 </Project>

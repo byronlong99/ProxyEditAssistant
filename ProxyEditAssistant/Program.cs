@@ -3,6 +3,7 @@ using MediaToolkit;
 using MediaToolkit.Model;
 using MediaToolkit.Options;
 using ProxyEditAssistant.Common;
+using ProxyEditAssistant.Logic;
 
 namespace ProxyEditAssistant
 {

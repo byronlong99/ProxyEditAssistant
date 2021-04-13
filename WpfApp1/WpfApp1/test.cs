@@ -18,7 +18,7 @@ public class Program
     private static int _totalFiles;
     private static int _currentFile;
 
-    public void Test()
+    public void BuildProxies()
     {
         _videoResolution = new Resolution {Height = Height, Width = Width};
 

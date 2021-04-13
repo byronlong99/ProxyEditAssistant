@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using ProxyEditAssistant.Logic;
 
 namespace ProxyEditAssistant
 {
@@ -11,7 +12,7 @@ namespace ProxyEditAssistant
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            var program = new Program();
+            var program = new ProxyBuilder();
             
             program.BuildProxies();
         }

@@ -3,11 +3,10 @@ using MediaToolkit;
 using MediaToolkit.Model;
 using MediaToolkit.Options;
 using ProxyEditAssistant.Common;
-using ProxyEditAssistant.Logic;
 
-namespace ProxyEditAssistant
+namespace ProxyEditAssistant.Logic
 {
-    public class Program
+    public class ProxyBuilder
     {
         private const string SourceDirectory = @"C:\Users\Byron\Documents\Software Projects\Personal\ProxyEditAssistant\WpfApp1\WpfApp1\TestVideos";
 
@@ -15,10 +14,10 @@ namespace ProxyEditAssistant
         // private const int Width = 640;
         private const int Height = 240;
         private const int Width = 426;
-        private static Resolution _videoResolution;
+        private Resolution _videoResolution;
         private const string SourceDirectoryName = "Source";
-        private static int _totalFiles;
-        private static int _currentFile;
+        private int _totalFiles;
+        private int _currentFile;
 
         public void BuildProxies()
         {
@@ -31,7 +30,7 @@ namespace ProxyEditAssistant
             ProcessFiles(fileNames);
         }
 
-        private static void ProcessFiles(List<string> fileNames)
+        private void ProcessFiles(List<string> fileNames)
         {
             _currentFile = 1;
             _totalFiles = fileNames.Count;
@@ -49,7 +48,7 @@ namespace ProxyEditAssistant
             }
         }
 
-        private static void Process(string fileName, Engine engine)
+        private void Process(string fileName, Engine engine)
         {
             var inputFile = new MediaFile {Filename = fileName};
             var outputFile = new MediaFile {Filename = fileName.Replace(SourceDirectoryName, _videoResolution.ToString())};

@@ -9,7 +9,7 @@
         <ComboBox>
             <ComboBoxItem Content="Hello" />
         </ComboBox>
-        <Button Content="Create Proxies" Click="ButtonBase_OnClick" />
-        <Label Content="{Binding Test}" />
+        <Button Content="Create Proxies" Click="CreateProxies" />
+        <Label Content="{Binding Output}" />
     </StackPanel>
 </Window>

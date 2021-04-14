@@ -23,7 +23,7 @@ namespace ProxyEditAssistant.Logic
 
         private readonly DisplayStatistics _callBack;
         
-        public delegate void DisplayStatistics(string message);
+        public delegate void DisplayStatistics(ProgressDetails message);
 
         public ProxyBuilder(DisplayStatistics callBack)
         {
@@ -77,7 +77,12 @@ namespace ProxyEditAssistant.Logic
 
         private void ConvertProgressEvent(object sender, ConvertProgressEventArgs e)
         {
-            _callBack(_currentFile.ToString());
+            var progressDetails = new ProgressDetails();
+            progressDetails.CurrentFileNumber = _currentFile.ToString();
+            progressDetails.TotalFileCount = _totalFiles.ToString();
+            progressDetails.BitRate = e.Bitrate;
+            progressDetails.FPS = e.Fps;
+            _callBack(progressDetails);
             // Console.Clear();
             // Console.WriteLine("\n------------\nConverting...\n------------");
             // Console.WriteLine("File Number: {0}", _currentFile);

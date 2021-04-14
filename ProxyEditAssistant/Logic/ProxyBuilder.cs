@@ -81,7 +81,7 @@ namespace ProxyEditAssistant.Logic
             progressDetails.CurrentFileNumber = _currentFile.ToString();
             progressDetails.TotalFileCount = _totalFiles.ToString();
             progressDetails.BitRate = e.Bitrate;
-            progressDetails.FPS = e.Fps;
+            progressDetails.FramesPerSecond = e.Fps;
             _callBack(progressDetails);
             // Console.Clear();
             // Console.WriteLine("\n------------\nConverting...\n------------");

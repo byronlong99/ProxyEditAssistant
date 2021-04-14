@@ -4,15 +4,31 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Height="450"
+        Width="800">
     <StackPanel>
-        <ComboBox>
-            <ComboBoxItem Content="Hello" />
-        </ComboBox>
         <Button Content="Create Proxies" Click="CreateProxies" />
-        <Label Content="{Binding FileCount}" />
-        <Label Content="{Binding TotalFiles}" />
-        <Label Content="{Binding BitRate}" />
-        <Label Content="{Binding FPS}" />
+        <StackPanel>
+            <Label Content="Progress" HorizontalAlignment="Center" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="Current File" />
+                <Label Grid.Row="0" Grid.Column="1" Content="{Binding FileCount}" />
+                <Label Content="{Binding TotalFiles}" />
+                <Label Content="{Binding BitRate}" />
+                <Label Content="{Binding FramesPerSecond}" />
+            </Grid>
+        </StackPanel>
     </StackPanel>
 </Window>

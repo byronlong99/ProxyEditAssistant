@@ -7,12 +7,13 @@ namespace ProxyEditAssistant.Models
 {
     public class MainScreenModel : ModelBase
     {
+        private readonly ProxyBuilder _proxyBuilder;
+        
         public string SourceDirectory { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
         public string FileCount { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
         public string TotalFiles { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
         public string BitRate { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
-        public string FPS { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
-        private readonly ProxyBuilder _proxyBuilder;
+        public string FramesPerSecond { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
         
         public MainScreenModel()
         {
@@ -30,9 +31,7 @@ namespace ProxyEditAssistant.Models
             FileCount = message.CurrentFileNumber;
             TotalFiles = message.TotalFileCount;
             BitRate = message.BitRate.ToString();
-            FPS = message.FPS.ToString(CultureInfo.InvariantCulture);
+            FramesPerSecond = message.FramesPerSecond.ToString(CultureInfo.InvariantCulture);
         }
-        
-
     }
 }

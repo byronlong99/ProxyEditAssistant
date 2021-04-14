@@ -3,6 +3,7 @@ using MediaToolkit;
 using MediaToolkit.Model;
 using MediaToolkit.Options;
 using ProxyEditAssistant.Common;
+using ProxyEditAssistant.Models;
 
 namespace ProxyEditAssistant.Logic
 {
@@ -17,16 +18,19 @@ namespace ProxyEditAssistant.Logic
         private const string SourceDirectoryName = "Source";
         private int _totalFiles;
         private int _currentFile;
-        private string _output;
         private readonly IFileListBuilder _fileListBuilder;
         private List<string> _fileNames;
 
-        public ProxyBuilder(string output)
+        private readonly DisplayStatistics _callBack;
+        
+        public delegate void DisplayStatistics(ProgressDetails message);
+
+        public ProxyBuilder(DisplayStatistics callBack)
         {
-            _output = output;
+            _callBack = callBack;
             _fileListBuilder = new FileListBuilder(SourceDirectory);
         }
-        
+
         public void BuildProxies()
         {
             _videoResolution = new Resolution {Height = Height, Width = Width};
@@ -73,7 +77,12 @@ namespace ProxyEditAssistant.Logic
 
         private void ConvertProgressEvent(object sender, ConvertProgressEventArgs e)
         {
-            _output = "Hsdfasdfkladsjfsdlkaj";
+            var progressDetails = new ProgressDetails();
+            progressDetails.CurrentFileNumber = _currentFile.ToString();
+            progressDetails.TotalFileCount = _totalFiles.ToString();
+            progressDetails.BitRate = e.Bitrate;
+            progressDetails.FPS = e.Fps;
+            _callBack(progressDetails);
             // Console.Clear();
             // Console.WriteLine("\n------------\nConverting...\n------------");
             // Console.WriteLine("File Number: {0}", _currentFile);

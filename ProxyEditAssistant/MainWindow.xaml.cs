@@ -13,10 +13,9 @@ namespace ProxyEditAssistant
             InitializeComponent();
             Model = new MainScreenModel();
             DataContext = Model;
-            Model.Output = "dafdsfasdf";
         }
 
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        private void CreateProxies(object sender, RoutedEventArgs e)
         {
             Model.GenerateProxies();
         }

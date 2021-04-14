@@ -18,6 +18,8 @@ namespace ProxyEditAssistant.Models
         public MainScreenModel()
         {
             _proxyBuilder = new ProxyBuilder(DisplayProgress);
+            FileCount = "N/A";
+            TotalFiles = "N/A";
         }
         
         public void GenerateProxies()

@@ -6,7 +6,7 @@ namespace ProxyEditAssistant.Models
     public class MainScreenModel : ModelBase
     {
         public string SourceDirectory { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
-        public string Test { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
+        public string Output { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
         
         public MainScreenModel()
         {
@@ -14,9 +14,7 @@ namespace ProxyEditAssistant.Models
         
         public void GenerateProxies()
         {
-            Test = "Hello";
-            
-            var program = new ProxyBuilder();
+            var program = new ProxyBuilder(Output);
             
             program.BuildProxies();
         }

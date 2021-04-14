@@ -8,8 +8,7 @@ namespace ProxyEditAssistant.Logic
 {
     public class ProxyBuilder
     {
-        private const string SourceDirectory = @"C:\Users\Byron\Documents\Software Projects\Personal\ProxyEditAssistant\WpfApp1\WpfApp1\TestVideos";
-
+        private const string SourceDirectory = @"TestVideos";
         // private const int Height = 360;
         // private const int Width = 640;
         private const int Height = 240;
@@ -18,29 +17,34 @@ namespace ProxyEditAssistant.Logic
         private const string SourceDirectoryName = "Source";
         private int _totalFiles;
         private int _currentFile;
+        private string _output;
+        private readonly IFileListBuilder _fileListBuilder;
+        private List<string> _fileNames;
 
+        public ProxyBuilder(string output)
+        {
+            _output = output;
+            _fileListBuilder = new FileListBuilder(SourceDirectory);
+        }
+        
         public void BuildProxies()
         {
             _videoResolution = new Resolution {Height = Height, Width = Width};
-
-            var fileListBuilder = new FileListBuilder(SourceDirectory, _videoResolution);
-
-            var fileNames = fileListBuilder.BuildListOfFiles();
-
-            ProcessFiles(fileNames);
+            _fileNames = _fileListBuilder.BuildListOfFiles(_videoResolution);
+            ProcessFiles();
         }
 
-        private void ProcessFiles(List<string> fileNames)
+        private void ProcessFiles()
         {
             _currentFile = 1;
-            _totalFiles = fileNames.Count;
+            _totalFiles = _fileNames.Count;
 
             using (var engine = new Engine())
             {
                 engine.ConvertProgressEvent += ConvertProgressEvent;
-                engine.ConversionCompleteEvent += engine_ConversionCompleteEvent;
+                engine.ConversionCompleteEvent += ConversionCompleteEvent;
 
-                foreach (var fileName in fileNames)
+                foreach (var fileName in _fileNames)
                 {
                     Process(fileName, engine);
                     _currentFile++;
@@ -67,8 +71,9 @@ namespace ProxyEditAssistant.Logic
             engine.Convert(inputFile, outputFile, conversionOptions);
         }
 
-        private static void ConvertProgressEvent(object sender, ConvertProgressEventArgs e)
+        private void ConvertProgressEvent(object sender, ConvertProgressEventArgs e)
         {
+            _output = "Hsdfasdfkladsjfsdlkaj";
             // Console.Clear();
             // Console.WriteLine("\n------------\nConverting...\n------------");
             // Console.WriteLine("File Number: {0}", _currentFile);
@@ -82,7 +87,7 @@ namespace ProxyEditAssistant.Logic
             // Console.WriteLine("Percent Complete: {0}\n", e.ProcessedDuration.TotalMilliseconds / e.TotalDuration.TotalMilliseconds * 100.0);
         }
 
-        private static void engine_ConversionCompleteEvent(object sender, ConversionCompleteEventArgs e)
+        private void ConversionCompleteEvent(object sender, ConversionCompleteEventArgs e)
         {
             // Console.Clear();
             // Console.WriteLine("\n------------\nConversion complete!\n------------");

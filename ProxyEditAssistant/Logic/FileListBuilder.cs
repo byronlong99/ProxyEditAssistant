@@ -5,20 +5,23 @@ using ProxyEditAssistant.Common;
 
 namespace ProxyEditAssistant.Logic
 {
-    public class FileListBuilder
+    public interface IFileListBuilder
+    {
+        List<string> BuildListOfFiles(Resolution resolution);
+    }
+    
+    public class FileListBuilder : IFileListBuilder
     {
         private readonly string _sourceDirectory;
         private List<string> _fileNames;
-        private readonly Resolution _resolution;
         private const string SourceDirectoryName = "Source";
 
-        public FileListBuilder(string sourceDirectory, Resolution resolution)
+        public FileListBuilder(string sourceDirectory)
         {
             _sourceDirectory = sourceDirectory;
-            _resolution = resolution;
         }
 
-        public List<string> BuildListOfFiles()
+        public List<string> BuildListOfFiles(Resolution resolution)
         {
             _fileNames = new List<string>();
             
@@ -32,7 +35,7 @@ namespace ProxyEditAssistant.Logic
 
                 foreach (var directory in sourceDirectories)
                 {
-                    var newDirectory = directory.Replace(SourceDirectoryName, _resolution.ToString());
+                    var newDirectory = directory.Replace(SourceDirectoryName, resolution.ToString());
 
                     Directory.CreateDirectory(newDirectory);
                     
@@ -47,15 +50,12 @@ namespace ProxyEditAssistant.Logic
             
             foreach (var fileName in _fileNames)
             {
-                var destinationFileName = fileName.Replace(SourceDirectoryName, _resolution.ToString());
+                var destinationFileName = fileName.Replace(SourceDirectoryName, resolution.ToString());
                 
-                if (!File.Exists(destinationFileName))
-                {
+                if (!File.Exists(destinationFileName)) 
                     resultingList.Add(fileName);
-                }
             }
-            
-            
+
             return resultingList;
         }
     }

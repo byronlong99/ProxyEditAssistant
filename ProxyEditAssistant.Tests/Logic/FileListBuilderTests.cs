@@ -14,9 +14,9 @@ namespace ProxyEditAssistant.Tests.Logic
 
             var resolution = new Resolution {Height = 360, Width = 240};
             
-            var fileListBuilder = new FileListBuilder(sourceDirectory, resolution);
+            var fileListBuilder = new FileListBuilder(sourceDirectory);
 
-            var files = fileListBuilder.BuildListOfFiles();
+            var files = fileListBuilder.BuildListOfFiles(resolution);
             
             Assert.AreEqual(4, files.Count);
             

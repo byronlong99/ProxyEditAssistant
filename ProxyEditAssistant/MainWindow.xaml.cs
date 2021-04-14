@@ -12,6 +12,8 @@ namespace ProxyEditAssistant
         {
             InitializeComponent();
             Model = new MainScreenModel();
+            DataContext = Model;
+            Model.Test = "dafdsfasdf";
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)

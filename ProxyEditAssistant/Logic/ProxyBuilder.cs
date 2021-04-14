@@ -10,6 +10,7 @@ namespace ProxyEditAssistant.Logic
     public class ProxyBuilder
     {
         private const string SourceDirectory = @"TestVideos";
+        private const int VideoBitRate = 5000;
         // private const int Height = 360;
         // private const int Width = 640;
         private const int Height = 240;
@@ -58,8 +59,15 @@ namespace ProxyEditAssistant.Logic
 
         private void Process(string fileName, Engine engine)
         {
-            var inputFile = new MediaFile {Filename = fileName};
-            var outputFile = new MediaFile {Filename = fileName.Replace(SourceDirectoryName, _videoResolution.ToString())};
+            var inputFile = new MediaFile
+            {
+                Filename = fileName
+            };
+            
+            var outputFile = new MediaFile
+            {
+                Filename = fileName.Replace(SourceDirectoryName, _videoResolution.ToString())
+            };
 
             var conversionOptions = new ConversionOptions
             {
@@ -68,7 +76,7 @@ namespace ProxyEditAssistant.Logic
                 AudioSampleRate = AudioSampleRate.Hz44100,
                 CustomHeight = _videoResolution.Height,
                 CustomWidth = _videoResolution.Width,
-                VideoBitRate = 5000,
+                VideoBitRate = VideoBitRate,
                 //MaxVideoDuration = TimeSpan.FromSeconds(10)
             };
 
@@ -84,10 +92,10 @@ namespace ProxyEditAssistant.Logic
             progressDetails.FramesPerSecond = e.Fps;
             progressDetails.Frame = e.Frame;
             progressDetails.ProcessedDuration = e.ProcessedDuration;
+            progressDetails.SizeKB = e.SizeKb;
+            progressDetails.TotalDuration = e.TotalDuration;
+            progressDetails.PercentComplete = e.ProcessedDuration.TotalMilliseconds / e.TotalDuration.TotalMilliseconds * 100.0;
             _callBack(progressDetails);
-            // Console.WriteLine("SizeKb: {0}", e.SizeKb);
-            // Console.WriteLine("TotalDuration: {0}\n", e.TotalDuration);
-            // Console.WriteLine("Percent Complete: {0}\n", e.ProcessedDuration.TotalMilliseconds / e.TotalDuration.TotalMilliseconds * 100.0);
         }
 
         private void ConversionCompleteEvent(object sender, ConversionCompleteEventArgs e)

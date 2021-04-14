@@ -10,5 +10,8 @@ namespace ProxyEditAssistant.Models
         public double FramesPerSecond { get; set; }
         public long Frame { get; set; }
         public TimeSpan ProcessedDuration { get; set; }
+        public int SizeKB { get; set; }
+        public TimeSpan TotalDuration { get; set; }
+        public double PercentComplete { get; set; }
     }
 }

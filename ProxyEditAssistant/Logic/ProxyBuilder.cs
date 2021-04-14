@@ -21,17 +21,16 @@ namespace ProxyEditAssistant.Logic
         private readonly IFileListBuilder _fileListBuilder;
         private List<string> _fileNames;
 
-        public MainScreenModel.Del CallBack;
+        private readonly DisplayStatistics _callBack;
+        
+        public delegate void DisplayStatistics(string message);
 
-        public static void DelegateMethod(string message)
+        public ProxyBuilder(DisplayStatistics callBack)
         {
-        }
-
-        public ProxyBuilder()
-        {
+            _callBack = callBack;
             _fileListBuilder = new FileListBuilder(SourceDirectory);
         }
-        
+
         public void BuildProxies()
         {
             _videoResolution = new Resolution {Height = Height, Width = Width};
@@ -78,7 +77,7 @@ namespace ProxyEditAssistant.Logic
 
         private void ConvertProgressEvent(object sender, ConvertProgressEventArgs e)
         {
-            CallBack("Hello");
+            _callBack(_currentFile.ToString());
             // Console.Clear();
             // Console.WriteLine("\n------------\nConverting...\n------------");
             // Console.WriteLine("File Number: {0}", _currentFile);

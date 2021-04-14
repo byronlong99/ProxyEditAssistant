@@ -8,14 +8,12 @@ namespace ProxyEditAssistant.Models
     {
         public string SourceDirectory { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
         public string Output { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
+        public ProgressDetails Progress { get => GetPropertyValue<ProgressDetails>(); set => SetPropertyValue(value); }
         private readonly ProxyBuilder _proxyBuilder;
         
-        public delegate void Del(string message);
-
         public MainScreenModel()
         {
-            _proxyBuilder = new ProxyBuilder();
-            _proxyBuilder.CallBack += UpdateStats;
+            _proxyBuilder = new ProxyBuilder(DisplayProgress);
         }
         
         public void GenerateProxies()
@@ -25,9 +23,14 @@ namespace ProxyEditAssistant.Models
             //task.ContinueWith(q => LineItemAddComplete(), TaskScheduler.FromCurrentSynchronizationContext()); 
         }
 
-        private void UpdateStats(string message)
+        private void DisplayProgress(string message)
         {
-            Output = "Hello";
+            Progress.FileCount = message;
+        }
+        
+        public class ProgressDetails
+        {
+            public string FileCount { get; set; }
         }
     }
 }

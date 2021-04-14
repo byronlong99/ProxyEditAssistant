@@ -10,6 +10,6 @@
             <ComboBoxItem Content="Hello" />
         </ComboBox>
         <Button Content="Create Proxies" Click="CreateProxies" />
-        <Label Content="{Binding Output}" />
+        <Label Content="{Binding Progress.FileCount}" />
     </StackPanel>
 </Window>

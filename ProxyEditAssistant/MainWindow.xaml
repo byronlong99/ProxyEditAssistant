@@ -11,27 +11,31 @@
     <StackPanel>
         <Button Content="Create Proxies" Click="CreateProxies" />
         <StackPanel>
-            <Label Content="Progress" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" />
-            <Grid HorizontalAlignment="Center">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Label FontSize="14" Grid.Row="0" Grid.Column="0" Content="Current File" />
-                <Label FontSize="14" Grid.Row="0" Grid.Column="1" Content="{Binding FileCount}" />
-                <Label FontSize="14" Grid.Row="1" Grid.Column="0" Content="Total Files" />
-                <Label Grid.Row="1" Grid.Column="1" Content="{Binding TotalFiles}" />
-                <Label Grid.Row="2" Grid.Column="0" Content="BitRate" />
-                <Label Grid.Row="2" Grid.Column="1" Content="{Binding BitRate}" />
-                <Label Grid.Row="3" Grid.Column="0" Content="Frames Per Second" />
-                <Label Grid.Row="3" Grid.Column="1" Content="{Binding FramesPerSecond}" />
-            </Grid>
+            <Label Content="Progress" FontSize="25" FontWeight="Bold" HorizontalAlignment="Center" />
+            <StackPanel Orientation="Horizontal">
+                <Grid HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.ColumnSpan="2" Content="Current File" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" />
+                    <Label FontSize="14" Grid.Row="1" Grid.Column="0" Content="Current File" />
+                    <Label FontSize="14" Grid.Row="1" Grid.Column="1" Content="{Binding FileCount}" />
+                    <Label FontSize="14" Grid.Row="2" Grid.Column="0" Content="Total Files" />
+                    <Label Grid.Row="2" Grid.Column="1" Content="{Binding TotalFiles}" />
+                    <Label Grid.Row="3" Grid.Column="0" Content="BitRate" />
+                    <Label Grid.Row="3" Grid.Column="1" Content="{Binding BitRate}" />
+                    <Label Grid.Row="4" Grid.Column="0" Content="Frames Per Second" />
+                    <Label Grid.Row="4" Grid.Column="1" Content="{Binding FramesPerSecond}" />
+                </Grid>
+            </StackPanel>
         </StackPanel>
     </StackPanel>
 </Window>

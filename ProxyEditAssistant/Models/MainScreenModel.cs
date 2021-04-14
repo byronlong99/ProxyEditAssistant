@@ -20,6 +20,8 @@ namespace ProxyEditAssistant.Models
             _proxyBuilder = new ProxyBuilder(DisplayProgress);
             FileCount = "N/A";
             TotalFiles = "N/A";
+            BitRate = "N/A";
+            FramesPerSecond = "N/A";
         }
         
         public void GenerateProxies()

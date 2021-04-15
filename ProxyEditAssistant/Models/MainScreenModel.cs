@@ -14,6 +14,11 @@ namespace ProxyEditAssistant.Models
         public string TotalFiles { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
         public string BitRate { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
         public string FramesPerSecond { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
+        public string Frame { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
+        public string ProcessedDuration { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
+        public string SizeKB { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
+        public string TotalDuration { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
+        public string PercentComplete { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
         
         public MainScreenModel()
         {
@@ -23,6 +28,7 @@ namespace ProxyEditAssistant.Models
             TotalFiles = "N/A";
             BitRate = "N/A";
             FramesPerSecond = "N/A";
+            Frame = "N/A";
         }
         
         public void GenerateProxies()
@@ -37,6 +43,11 @@ namespace ProxyEditAssistant.Models
             TotalFiles = message.TotalFileCount;
             BitRate = message.BitRate.ToString();
             FramesPerSecond = message.FramesPerSecond.ToString(CultureInfo.InvariantCulture);
+            Frame = message.Frame.ToString(CultureInfo.InvariantCulture);
+            ProcessedDuration = message.ProcessedDuration.ToString();
+            SizeKB = message.SizeKB.ToString();
+            TotalDuration = message.TotalDuration.ToString();
+            PercentComplete = message.PercentComplete.ToString(CultureInfo.InvariantCulture);
         }
     }
 }

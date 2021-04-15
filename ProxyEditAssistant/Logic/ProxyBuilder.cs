@@ -9,7 +9,7 @@ namespace ProxyEditAssistant.Logic
 {
     public class ProxyBuilder
     {
-        private const string SourceDirectory = @"TestVideos";
+        public string SourceDirectory { get; set; }
         private const int VideoBitRate = 5000;
         // private const int Height = 360;
         // private const int Width = 640;

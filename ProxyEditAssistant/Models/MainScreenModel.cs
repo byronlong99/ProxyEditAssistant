@@ -18,6 +18,7 @@ namespace ProxyEditAssistant.Models
         public MainScreenModel()
         {
             _proxyBuilder = new ProxyBuilder(DisplayProgress);
+            _proxyBuilder.SourceDirectory = @"TestVideos";
             FileCount = "N/A";
             TotalFiles = "N/A";
             BitRate = "N/A";

@@ -43,6 +43,12 @@ namespace ProxyEditAssistant.Models
             SizeKB = "N/A";
             TotalDuration = "N/A";
             PercentComplete = "N/A";
+
+            Options = new ObservableCollection<Test>();
+            Options.Add(new Test() { Resolution = "360p"});
+            Options.Add(new Test() { Resolution = "480p"});
+            Options.Add(new Test() { Resolution = "720p"});
+            Options.Add(new Test() { Resolution = "1080p"});
         }
         
         public void GenerateProxies()

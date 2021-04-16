@@ -7,15 +7,10 @@ using ProxyEditAssistant.Logic;
 
 namespace ProxyEditAssistant.Models
 {
-    public class Option
-    {
-        public string ResolutionText { get; set; }
-        public Resolution Resolution { get; set; }
-    }
-    
     public class MainScreenModel : ModelBase
     {
         private readonly ProxyBuilder _proxyBuilder;
+        private readonly IFileListBuilder _fileListBuilder;
         
         public string SourceDirectory { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
         public string FileCount { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
@@ -27,13 +22,12 @@ namespace ProxyEditAssistant.Models
         public string SizeKB { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
         public string TotalDuration { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
         public string PercentComplete { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
-        
-        public ObservableCollection<Option> Options { get; set; }
-    
+        public ObservableCollection<OptionModel> Options { get; set; }
         
         public MainScreenModel()
         {
-            _proxyBuilder = new ProxyBuilder(DisplayProgress);
+            _fileListBuilder = new FileListBuilder();
+            _proxyBuilder = new ProxyBuilder(DisplayProgress, _fileListBuilder);
             _proxyBuilder.SourceDirectory = @"TestVideos";
             FileCount = "N/A";
             TotalFiles = "N/A";
@@ -49,11 +43,11 @@ namespace ProxyEditAssistant.Models
 
         private void BuildOptions()
         {
-            Options = new ObservableCollection<Option>();
-            Options.Add(new Option { ResolutionText = "360p", Resolution = new Resolution { Height = 360, Width = 360}});
-            Options.Add(new Option { ResolutionText = "480p", Resolution = new Resolution { Height = 480, Width = 480}});
-            Options.Add(new Option { ResolutionText = "720p", Resolution = new Resolution { Height = 480, Width = 720}});
-            Options.Add(new Option { ResolutionText = "1080p", Resolution = new Resolution { Height = 480, Width = 1080}});
+            Options = new ObservableCollection<OptionModel>();
+            Options.Add(new OptionModel { ResolutionText = "360p", Color = "#90caf9", BuildButtonText = "true", Resolution = new Resolution { Height = 360, Width = 360}});
+            Options.Add(new OptionModel { ResolutionText = "480p", Color = "#90caf9", BuildButtonText = "true", Resolution = new Resolution { Height = 480, Width = 480}});
+            Options.Add(new OptionModel { ResolutionText = "720p", Color = "#90caf9", BuildButtonText = "true", Resolution = new Resolution { Height = 480, Width = 720}});
+            Options.Add(new OptionModel { ResolutionText = "1080p", Color = "#90caf9", BuildButtonText = "true", Resolution = new Resolution { Height = 480, Width = 1080}});
         }
         
         public void GenerateProxies()

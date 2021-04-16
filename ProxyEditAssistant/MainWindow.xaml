@@ -38,9 +38,11 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="0" HorizontalAlignment="Center" Orientation="Horizontal">
-                        <Label Width="100" Margin="20, 10, 10, 10" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="30"
+                        <Label Width="100" Margin="20, 10, 10, 10" HorizontalAlignment="Left"
+                               VerticalAlignment="Center" FontSize="30"
                                Content="{Binding ResolutionText}" />
-                        <Button Margin="10" HorizontalAlignment="Right" FontSize="18" Content="Build Proxies" Background="#90caf9"
+                        <Button Margin="10" HorizontalAlignment="Right" FontSize="18"
+                                Content="{Binding BuildButtonText}" Background="{Binding Color}"
                                 Click="CreateProxies"
                                 Style="{StaticResource GeneralButton}"
                                 Height="70" Width="200">
@@ -52,7 +54,8 @@
                                 </Style>
                             </Button.Resources>
                         </Button>
-                        <Button Margin="10" HorizontalAlignment="Right" FontSize="18" Content="Select" Background="#90caf9"
+                        <Button Margin="10" HorizontalAlignment="Right" FontSize="18" Content="Select"
+                                Background="#90caf9"
                                 Click="CreateProxies"
                                 Style="{StaticResource GeneralButton}"
                                 Height="80" Width="200">
@@ -69,7 +72,7 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
         <!-- Progress Details -->
-        <StackPanel>
+        <StackPanel HorizontalAlignment="Center">
             <Label Content="Progress" FontSize="25" FontWeight="Bold" HorizontalAlignment="Center" />
             <StackPanel Orientation="Horizontal">
                 <Grid HorizontalAlignment="Center">
@@ -114,6 +117,10 @@
                     <Label Style="{StaticResource ProgressDetail}" Grid.Row="7" Grid.Column="1"
                            Content="{Binding SizeKB}" />
                 </Grid>
+                <StackPanel>
+                    <Label Content="Current File" FontSize="20" FontWeight="Bold"
+                           HorizontalAlignment="Center" />
+                </StackPanel>
             </StackPanel>
         </StackPanel>
     </StackPanel>

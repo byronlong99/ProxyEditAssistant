@@ -26,10 +26,10 @@ namespace ProxyEditAssistant.Logic
         
         public delegate void DisplayStatistics(ProgressDetails message);
 
-        public ProxyBuilder(DisplayStatistics callBack)
+        public ProxyBuilder(DisplayStatistics callBack, IFileListBuilder fileListBuilder)
         {
             _callBack = callBack;
-            _fileListBuilder = new FileListBuilder();
+            _fileListBuilder = fileListBuilder;
         }
 
         public void BuildProxies()

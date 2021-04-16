@@ -7,9 +7,10 @@ using ProxyEditAssistant.Logic;
 
 namespace ProxyEditAssistant.Models
 {
-    public class Test
+    public class Option
     {
-        public string Resolution { get; set; }
+        public string ResolutionText { get; set; }
+        public Resolution Resolution { get; set; }
     }
     
     public class MainScreenModel : ModelBase
@@ -27,7 +28,7 @@ namespace ProxyEditAssistant.Models
         public string TotalDuration { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
         public string PercentComplete { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
         
-        public ObservableCollection<Test> Options { get; set; }
+        public ObservableCollection<Option> Options { get; set; }
     
         
         public MainScreenModel()
@@ -43,12 +44,16 @@ namespace ProxyEditAssistant.Models
             SizeKB = "N/A";
             TotalDuration = "N/A";
             PercentComplete = "N/A";
+            BuildOptions();
+        }
 
-            Options = new ObservableCollection<Test>();
-            Options.Add(new Test() { Resolution = "360p"});
-            Options.Add(new Test() { Resolution = "480p"});
-            Options.Add(new Test() { Resolution = "720p"});
-            Options.Add(new Test() { Resolution = "1080p"});
+        private void BuildOptions()
+        {
+            Options = new ObservableCollection<Option>();
+            Options.Add(new Option { ResolutionText = "360p", Resolution = new Resolution { Height = 360, Width = 360}});
+            Options.Add(new Option { ResolutionText = "480p", Resolution = new Resolution { Height = 480, Width = 480}});
+            Options.Add(new Option { ResolutionText = "720p", Resolution = new Resolution { Height = 480, Width = 720}});
+            Options.Add(new Option { ResolutionText = "1080p", Resolution = new Resolution { Height = 480, Width = 1080}});
         }
         
         public void GenerateProxies()

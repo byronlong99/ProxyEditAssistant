@@ -7,7 +7,7 @@
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         Height="550"
-        Width="900">
+        Width="1080">
     <Window.Resources>
         <Style TargetType="Label" x:Key="ProgressDetail">
             <Setter Property="FontSize" Value="14" />
@@ -33,22 +33,22 @@
             </Setter>
         </Style>
     </Window.Resources>
-    <StackPanel>
+    <StackPanel Orientation="Horizontal">
         <ItemsControl ItemsSource="{Binding Options}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="0" HorizontalAlignment="Center" Orientation="Horizontal">
                         <Label Width="100" Margin="20, 10, 10, 10" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="30"
-                               Content="{Binding Resolution}" />
+                               Content="{Binding ResolutionText}" />
                         <Button Margin="10" HorizontalAlignment="Right" FontSize="18" Content="Build Proxies" Background="#90caf9"
                                 Click="CreateProxies"
                                 Style="{StaticResource GeneralButton}"
-                                Height="80" Width="200">
+                                Height="70" Width="200">
                             <Button.Resources>
                                 <Style TargetType="{x:Type Border}">
                                     <Setter Property="BorderThickness" Value="1" />
                                     <Setter Property="BorderBrush" Value="{Binding Color}" />
-                                    <Setter Property="CornerRadius" Value="30" />
+                                    <Setter Property="CornerRadius" Value="20" />
                                 </Style>
                             </Button.Resources>
                         </Button>

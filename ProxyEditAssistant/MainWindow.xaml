@@ -46,6 +46,8 @@
                     <Label Style="{StaticResource ProgressDetail}" Grid.Row="5" Grid.Column="1" Content="{Binding Frame}" />
                     <Label Style="{StaticResource ProgressDetail}" Grid.Row="6" Grid.Column="0" Content="Processed Duration" />
                     <Label Style="{StaticResource ProgressDetail}" Grid.Row="6" Grid.Column="1" Content="{Binding ProcessedDuration}" />
+                    <Label Style="{StaticResource ProgressDetail}" Grid.Row="7" Grid.Column="0" Content="Size in Kilobytes" />
+                    <Label Style="{StaticResource ProgressDetail}" Grid.Row="7" Grid.Column="1" Content="{Binding SizeKB}" />
                 </Grid>
             </StackPanel>
         </StackPanel>

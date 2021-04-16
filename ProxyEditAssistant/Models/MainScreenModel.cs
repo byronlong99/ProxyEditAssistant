@@ -1,10 +1,17 @@
-﻿using System.Globalization;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Threading.Tasks;
 using ProxyEditAssistant.Common;
 using ProxyEditAssistant.Logic;
 
 namespace ProxyEditAssistant.Models
 {
+    public class Test
+    {
+        public string Resolution { get; set; }
+    }
+    
     public class MainScreenModel : ModelBase
     {
         private readonly ProxyBuilder _proxyBuilder;
@@ -19,6 +26,9 @@ namespace ProxyEditAssistant.Models
         public string SizeKB { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
         public string TotalDuration { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
         public string PercentComplete { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
+        
+        public ObservableCollection<Test> Options { get; set; }
+    
         
         public MainScreenModel()
         {

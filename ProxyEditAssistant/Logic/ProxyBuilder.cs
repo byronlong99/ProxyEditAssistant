@@ -9,7 +9,8 @@ namespace ProxyEditAssistant.Logic
 {
     public class ProxyBuilder
     {
-        private const string SourceDirectory = @"TestVideos";
+        public string SourceDirectory { get; set; }
+        private const int VideoBitRate = 5000;
         // private const int Height = 360;
         // private const int Width = 640;
         private const int Height = 240;
@@ -28,13 +29,13 @@ namespace ProxyEditAssistant.Logic
         public ProxyBuilder(DisplayStatistics callBack)
         {
             _callBack = callBack;
-            _fileListBuilder = new FileListBuilder(SourceDirectory);
+            _fileListBuilder = new FileListBuilder();
         }
 
         public void BuildProxies()
         {
             _videoResolution = new Resolution {Height = Height, Width = Width};
-            _fileNames = _fileListBuilder.BuildListOfFiles(_videoResolution);
+            _fileNames = _fileListBuilder.BuildListOfFiles(_videoResolution, SourceDirectory);
             ProcessFiles();
         }
 
@@ -58,8 +59,15 @@ namespace ProxyEditAssistant.Logic
 
         private void Process(string fileName, Engine engine)
         {
-            var inputFile = new MediaFile {Filename = fileName};
-            var outputFile = new MediaFile {Filename = fileName.Replace(SourceDirectoryName, _videoResolution.ToString())};
+            var inputFile = new MediaFile
+            {
+                Filename = fileName
+            };
+            
+            var outputFile = new MediaFile
+            {
+                Filename = fileName.Replace(SourceDirectoryName, _videoResolution.ToString())
+            };
 
             var conversionOptions = new ConversionOptions
             {
@@ -68,7 +76,7 @@ namespace ProxyEditAssistant.Logic
                 AudioSampleRate = AudioSampleRate.Hz44100,
                 CustomHeight = _videoResolution.Height,
                 CustomWidth = _videoResolution.Width,
-                VideoBitRate = 5000,
+                VideoBitRate = VideoBitRate,
                 //MaxVideoDuration = TimeSpan.FromSeconds(10)
             };
 
@@ -82,18 +90,12 @@ namespace ProxyEditAssistant.Logic
             progressDetails.TotalFileCount = _totalFiles.ToString();
             progressDetails.BitRate = e.Bitrate;
             progressDetails.FramesPerSecond = e.Fps;
+            progressDetails.Frame = e.Frame;
+            progressDetails.ProcessedDuration = e.ProcessedDuration;
+            progressDetails.SizeKB = e.SizeKb;
+            progressDetails.TotalDuration = e.TotalDuration;
+            progressDetails.PercentComplete = e.ProcessedDuration.TotalMilliseconds / e.TotalDuration.TotalMilliseconds * 100.0;
             _callBack(progressDetails);
-            // Console.Clear();
-            // Console.WriteLine("\n------------\nConverting...\n------------");
-            // Console.WriteLine("File Number: {0}", _currentFile);
-            // Console.WriteLine("Total Files: {0}", _totalFiles);
-            // Console.WriteLine("Bitrate: {0}", e.Bitrate);
-            // Console.WriteLine("Fps: {0}", e.Fps);
-            // Console.WriteLine("Frame: {0}", e.Frame);
-            // Console.WriteLine("ProcessedDuration: {0}", e.ProcessedDuration);
-            // Console.WriteLine("SizeKb: {0}", e.SizeKb);
-            // Console.WriteLine("TotalDuration: {0}\n", e.TotalDuration);
-            // Console.WriteLine("Percent Complete: {0}\n", e.ProcessedDuration.TotalMilliseconds / e.TotalDuration.TotalMilliseconds * 100.0);
         }
 
         private void ConversionCompleteEvent(object sender, ConversionCompleteEventArgs e)

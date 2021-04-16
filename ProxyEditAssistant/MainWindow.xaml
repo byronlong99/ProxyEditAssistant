@@ -6,29 +6,91 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
-        Height="450"
-        Width="800">
+        Height="550"
+        Width="900">
+    <Window.Resources>
+        <Style TargetType="Label" x:Key="ProgressDetail">
+            <Setter Property="FontSize" Value="14" />
+        </Style>
+        <Style x:Key="GeneralButton" TargetType="Button">
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="#F4F4F4"/>
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="Black" Direction="320" ShadowDepth="3" BlurRadius="5" Opacity="0.5" />
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <StackPanel>
-        <Button Content="Create Proxies" Click="CreateProxies" />
+        <Button Margin="30" FontSize="18" Content="Create Proxies" Background="#90caf9" Click="CreateProxies" Style="{StaticResource GeneralButton}"
+                Height="200" Width="200">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="BorderThickness" Value="1" />
+                    <Setter Property="BorderBrush" Value="{Binding Color}" />
+                    <Setter Property="CornerRadius" Value="80" />
+                </Style>
+            </Button.Resources>
+        </Button>
+        <!-- Progress Details -->
         <StackPanel>
-            <Label Content="Progress" HorizontalAlignment="Center" />
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Label Grid.Row="0" Grid.Column="0" Content="Current File" />
-                <Label Grid.Row="0" Grid.Column="1" Content="{Binding FileCount}" />
-                <Label Content="{Binding TotalFiles}" />
-                <Label Content="{Binding BitRate}" />
-                <Label Content="{Binding FramesPerSecond}" />
-            </Grid>
+            <Label Content="Progress" FontSize="25" FontWeight="Bold" HorizontalAlignment="Center" />
+            <StackPanel Orientation="Horizontal">
+                <Grid HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.ColumnSpan="2" Content="Current File" FontSize="20" FontWeight="Bold"
+                           HorizontalAlignment="Center" />
+                    <Label Style="{StaticResource ProgressDetail}" Grid.Row="1" Grid.Column="0" Content="Current File" />
+                    <Label Style="{StaticResource ProgressDetail}" Grid.Row="1" Grid.Column="1"
+                           Content="{Binding FileCount}" />
+                    <Label Style="{StaticResource ProgressDetail}" Grid.Row="2" Grid.Column="0" Content="Total Files" />
+                    <Label Style="{StaticResource ProgressDetail}" Grid.Row="2" Grid.Column="1"
+                           Content="{Binding TotalFiles}" />
+                    <Label Style="{StaticResource ProgressDetail}" Grid.Row="3" Grid.Column="0" Content="BitRate" />
+                    <Label Style="{StaticResource ProgressDetail}" Grid.Row="3" Grid.Column="1"
+                           Content="{Binding BitRate}" />
+                    <Label Style="{StaticResource ProgressDetail}" Grid.Row="4" Grid.Column="0"
+                           Content="Frames Per Second" />
+                    <Label Style="{StaticResource ProgressDetail}" Grid.Row="4" Grid.Column="1"
+                           Content="{Binding FramesPerSecond}" />
+                    <Label Style="{StaticResource ProgressDetail}" Grid.Row="5" Grid.Column="0" Content="Frame" />
+                    <Label Style="{StaticResource ProgressDetail}" Grid.Row="5" Grid.Column="1"
+                           Content="{Binding Frame}" />
+                    <Label Style="{StaticResource ProgressDetail}" Grid.Row="6" Grid.Column="0"
+                           Content="Processed Duration" />
+                    <Label Style="{StaticResource ProgressDetail}" Grid.Row="6" Grid.Column="1"
+                           Content="{Binding ProcessedDuration}" />
+                    <Label Style="{StaticResource ProgressDetail}" Grid.Row="7" Grid.Column="0"
+                           Content="Size in Kilobytes" />
+                    <Label Style="{StaticResource ProgressDetail}" Grid.Row="7" Grid.Column="1"
+                           Content="{Binding SizeKB}" />
+                </Grid>
+            </StackPanel>
         </StackPanel>
     </StackPanel>
 </Window>

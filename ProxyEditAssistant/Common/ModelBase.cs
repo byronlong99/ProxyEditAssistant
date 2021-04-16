@@ -11,11 +11,9 @@ namespace ProxyEditAssistant.Common
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            if (this.PropertyChanged == null)
-                return;
-            this.PropertyChanged((object) this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         protected T GetPropertyValue<T>([CallerMemberName] string propertyName = null)
@@ -23,17 +21,17 @@ namespace ProxyEditAssistant.Common
             if (propertyName == null)
                 throw new ArgumentNullException(nameof (propertyName));
             object obj;
-            return this._propertyBackingDictionary.TryGetValue(propertyName, out obj) ? (T) obj : default (T);
+            return _propertyBackingDictionary.TryGetValue(propertyName, out obj) ? (T) obj : default;
         }
 
         protected bool SetPropertyValue<T>(T newValue, [CallerMemberName] string propertyName = null)
         {
             if (propertyName == null)
                 throw new ArgumentNullException(nameof (propertyName));
-            if (EqualityComparer<T>.Default.Equals(newValue, this.GetPropertyValue<T>(propertyName)))
+            if (EqualityComparer<T>.Default.Equals(newValue, GetPropertyValue<T>(propertyName)))
                 return false;
-            this._propertyBackingDictionary[propertyName] = (object) newValue;
-            this.OnPropertyChanged(propertyName);
+            _propertyBackingDictionary[propertyName] = newValue;
+            OnPropertyChanged(propertyName);
             return true;
         }
     }

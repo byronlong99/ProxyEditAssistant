@@ -6,8 +6,8 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
-        Height="450"
-        Width="800">
+        Height="550"
+        Width="900">
     <Window.Resources>
         <Style TargetType="Label" x:Key="ProgressDetail">
             <Setter Property="FontSize" Value="14"/>
@@ -29,6 +29,9 @@
                         <RowDefinition />
                         <RowDefinition />
                         <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0" Grid.ColumnSpan="2" Content="Current File" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" />
                     <Label Style="{StaticResource ProgressDetail}" Grid.Row="1" Grid.Column="0" Content="Current File" />
@@ -39,6 +42,10 @@
                     <Label Style="{StaticResource ProgressDetail}" Grid.Row="3" Grid.Column="1" Content="{Binding BitRate}" />
                     <Label Style="{StaticResource ProgressDetail}" Grid.Row="4" Grid.Column="0" Content="Frames Per Second" />
                     <Label Style="{StaticResource ProgressDetail}" Grid.Row="4" Grid.Column="1" Content="{Binding FramesPerSecond}" />
+                    <Label Style="{StaticResource ProgressDetail}" Grid.Row="5" Grid.Column="0" Content="Frame" />
+                    <Label Style="{StaticResource ProgressDetail}" Grid.Row="5" Grid.Column="1" Content="{Binding Frame}" />
+                    <Label Style="{StaticResource ProgressDetail}" Grid.Row="6" Grid.Column="0" Content="Processed Duration" />
+                    <Label Style="{StaticResource ProgressDetail}" Grid.Row="6" Grid.Column="1" Content="{Binding ProcessedDuration}" />
                 </Grid>
             </StackPanel>
         </StackPanel>

@@ -29,6 +29,10 @@ namespace ProxyEditAssistant.Models
             BitRate = "N/A";
             FramesPerSecond = "N/A";
             Frame = "N/A";
+            ProcessedDuration = "N/A";
+            SizeKB = "N/A";
+            TotalDuration = "N/A";
+            PercentComplete = "N/A";
         }
         
         public void GenerateProxies()

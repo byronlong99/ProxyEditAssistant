@@ -29,13 +29,13 @@ namespace ProxyEditAssistant.Logic
         public ProxyBuilder(DisplayStatistics callBack)
         {
             _callBack = callBack;
-            _fileListBuilder = new FileListBuilder(SourceDirectory);
+            _fileListBuilder = new FileListBuilder();
         }
 
         public void BuildProxies()
         {
             _videoResolution = new Resolution {Height = Height, Width = Width};
-            _fileNames = _fileListBuilder.BuildListOfFiles(_videoResolution);
+            _fileNames = _fileListBuilder.BuildListOfFiles(_videoResolution, SourceDirectory);
             ProcessFiles();
         }
 

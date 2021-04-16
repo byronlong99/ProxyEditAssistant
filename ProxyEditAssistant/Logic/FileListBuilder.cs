@@ -7,25 +7,19 @@ namespace ProxyEditAssistant.Logic
 {
     public interface IFileListBuilder
     {
-        List<string> BuildListOfFiles(Resolution resolution);
+        List<string> BuildListOfFiles(Resolution resolution, string topLevelDirectoryName);
     }
-    
+
     public class FileListBuilder : IFileListBuilder
     {
-        private readonly string _sourceDirectory;
         private List<string> _fileNames;
         private const string SourceDirectoryName = "Source";
 
-        public FileListBuilder(string sourceDirectory)
-        {
-            _sourceDirectory = sourceDirectory;
-        }
-
-        public List<string> BuildListOfFiles(Resolution resolution)
+        public List<string> BuildListOfFiles(Resolution resolution, string topLevelDirectoryName)
         {
             _fileNames = new List<string>();
-            
-            var directories = Directory.GetDirectories(_sourceDirectory);
+
+            var directories = Directory.GetDirectories(topLevelDirectoryName);
 
             var sourceDirectory = directories.SingleOrDefault(e => e.Contains(SourceDirectoryName));
 
@@ -38,7 +32,7 @@ namespace ProxyEditAssistant.Logic
                     var newDirectory = directory.Replace(SourceDirectoryName, resolution.ToString());
 
                     Directory.CreateDirectory(newDirectory);
-                    
+
                     var files = Directory.GetFiles(directory);
                     _fileNames.AddRange(files);
                 }
@@ -47,12 +41,12 @@ namespace ProxyEditAssistant.Logic
             _fileNames = _fileNames.Where(e => e.ToLower().EndsWith("mp4")).ToList();
 
             var resultingList = new List<string>();
-            
+
             foreach (var fileName in _fileNames)
             {
                 var destinationFileName = fileName.Replace(SourceDirectoryName, resolution.ToString());
-                
-                if (!File.Exists(destinationFileName)) 
+
+                if (!File.Exists(destinationFileName))
                     resultingList.Add(fileName);
             }
 

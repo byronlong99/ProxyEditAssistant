@@ -2,7 +2,7 @@
 
 namespace ProxyEditAssistant.Models
 {
-    public class ProgressDetails
+    public class ProgressDetailsEvent
     {
         public string CurrentFileNumber { get; set; }
         public string TotalFileCount { get; set; }

@@ -56,7 +56,7 @@ namespace ProxyEditAssistant.Models
             task.Start();
         }
 
-        private void DisplayProgress(ProgressDetails message)
+        private void DisplayProgress(ProgressDetailsEvent message)
         {
             FileCount = message.CurrentFileNumber;
             TotalFiles = message.TotalFileCount;

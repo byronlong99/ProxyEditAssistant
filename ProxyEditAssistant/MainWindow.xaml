@@ -15,18 +15,18 @@
         <Style x:Key="GeneralButton" TargetType="Button">
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="Foreground" Value="#F4F4F4"/>
+            <Setter Property="Foreground" Value="#F4F4F4" />
             <Setter Property="Focusable" Value="False" />
             <Setter Property="Effect">
                 <Setter.Value>
-                    <DropShadowEffect Color="Black" Direction="320" ShadowDepth="3" BlurRadius="5" Opacity="0.5" />
+                    <DropShadowEffect Color="Gray" Direction="320" ShadowDepth="3" BlurRadius="5" Opacity="0.5" />
                 </Setter.Value>
             </Setter>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Border Background="{TemplateBinding Background}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
@@ -34,16 +34,40 @@
         </Style>
     </Window.Resources>
     <StackPanel>
-        <Button Margin="30" FontSize="18" Content="Create Proxies" Background="#90caf9" Click="CreateProxies" Style="{StaticResource GeneralButton}"
-                Height="200" Width="200">
-            <Button.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="BorderThickness" Value="1" />
-                    <Setter Property="BorderBrush" Value="{Binding Color}" />
-                    <Setter Property="CornerRadius" Value="80" />
-                </Style>
-            </Button.Resources>
-        </Button>
+        <ItemsControl ItemsSource="{Binding Options}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="0" HorizontalAlignment="Center" Orientation="Horizontal">
+                        <Label Width="100" Margin="20, 10, 10, 10" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="30"
+                               Content="{Binding Resolution}" />
+                        <Button Margin="10" HorizontalAlignment="Right" FontSize="18" Content="Build Proxies" Background="#90caf9"
+                                Click="CreateProxies"
+                                Style="{StaticResource GeneralButton}"
+                                Height="80" Width="200">
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="BorderThickness" Value="1" />
+                                    <Setter Property="BorderBrush" Value="{Binding Color}" />
+                                    <Setter Property="CornerRadius" Value="30" />
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                        <Button Margin="10" HorizontalAlignment="Right" FontSize="18" Content="Select" Background="#90caf9"
+                                Click="CreateProxies"
+                                Style="{StaticResource GeneralButton}"
+                                Height="80" Width="200">
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="BorderThickness" Value="1" />
+                                    <Setter Property="BorderBrush" Value="{Binding Color}" />
+                                    <Setter Property="CornerRadius" Value="30" />
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
         <!-- Progress Details -->
         <StackPanel>
             <Label Content="Progress" FontSize="25" FontWeight="Bold" HorizontalAlignment="Center" />

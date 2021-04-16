@@ -10,13 +10,11 @@ namespace ProxyEditAssistant.Tests.Logic
         [TestMethod]
         public void BuildListOfFiles_NoFilesExist_AllFilesAreReturned()
         {
-            var sourceDirectory = @"TestVideos";
-
             var resolution = new Resolution {Height = 360, Width = 240};
             
-            var fileListBuilder = new FileListBuilder(sourceDirectory);
+            var fileListBuilder = new FileListBuilder();
 
-            var files = fileListBuilder.BuildListOfFiles(resolution);
+            var files = fileListBuilder.BuildListOfFiles(resolution, "TestVideos");
             
             Assert.AreEqual(4, files.Count);
             

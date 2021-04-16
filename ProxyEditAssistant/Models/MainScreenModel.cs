@@ -1,10 +1,17 @@
-﻿using System.Globalization;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Threading.Tasks;
 using ProxyEditAssistant.Common;
 using ProxyEditAssistant.Logic;
 
 namespace ProxyEditAssistant.Models
 {
+    public class Test
+    {
+        public string Resolution { get; set; }
+    }
+    
     public class MainScreenModel : ModelBase
     {
         private readonly ProxyBuilder _proxyBuilder;
@@ -20,6 +27,9 @@ namespace ProxyEditAssistant.Models
         public string TotalDuration { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
         public string PercentComplete { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
         
+        public ObservableCollection<Test> Options { get; set; }
+    
+        
         public MainScreenModel()
         {
             _proxyBuilder = new ProxyBuilder(DisplayProgress);
@@ -33,6 +43,12 @@ namespace ProxyEditAssistant.Models
             SizeKB = "N/A";
             TotalDuration = "N/A";
             PercentComplete = "N/A";
+
+            Options = new ObservableCollection<Test>();
+            Options.Add(new Test() { Resolution = "360p"});
+            Options.Add(new Test() { Resolution = "480p"});
+            Options.Add(new Test() { Resolution = "720p"});
+            Options.Add(new Test() { Resolution = "1080p"});
         }
         
         public void GenerateProxies()

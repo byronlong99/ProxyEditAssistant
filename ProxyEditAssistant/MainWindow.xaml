@@ -33,7 +33,8 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="0" HorizontalAlignment="Center" Orientation="Horizontal">
-                        <Label Width="100" Margin="20, 10, 10, 10" HorizontalAlignment="Left"
+                        <Label Width="100" Height="70" Margin="0"
+                               Background="#b6ffff" HorizontalAlignment="Center"
                                VerticalAlignment="Center" FontSize="23"
                                Content="{Binding ResolutionText}" />
                         <Button Margin="0" HorizontalAlignment="Right" FontSize="18"

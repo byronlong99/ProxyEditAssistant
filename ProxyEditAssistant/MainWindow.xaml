@@ -94,7 +94,7 @@
                     <Label Style="{StaticResource ProgressDetail}" Grid.Row="2" Grid.Column="0" Content="Total Files" />
                     <Label Style="{StaticResource ProgressDetail}" Grid.Row="2" Grid.Column="1"
                            Content="{Binding TotalFiles}" />
-                    <Label Style="{StaticResource ProgressDetail}" Grid.Row="3" Grid.Column="0" Content="BitRate" />
+                    <Label Style="{StaticResource ProgressDetail}" Grid.Row="3" Grid.Column="0" Content="Bitrate" />
                     <Label Style="{StaticResource ProgressDetail}" Grid.Row="3" Grid.Column="1"
                            Content="{Binding Bitrate}" />
                     <Label Style="{StaticResource ProgressDetail}" Grid.Row="4" Grid.Column="0"

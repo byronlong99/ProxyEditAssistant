@@ -11,6 +11,7 @@ namespace ProxyEditAssistant.Models
     {
         private readonly ProxyBuilder _proxyBuilder;
         private readonly IFileListBuilder _fileListBuilder;
+        private List<Resolution> _resolutions;
         
         public string SourceDirectory { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
         public string FileCount { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
@@ -23,9 +24,12 @@ namespace ProxyEditAssistant.Models
         public string TotalDuration { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
         public string PercentComplete { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
         public ObservableCollection<OptionModel> Options { get; set; }
-        
+
         public MainScreenModel()
         {
+            CreateResolutions();
+            BuildResolutionOptions();
+            
             _fileListBuilder = new FileListBuilder();
             _proxyBuilder = new ProxyBuilder(DisplayProgress, _fileListBuilder);
             _proxyBuilder.SourceDirectory = @"TestVideos";
@@ -38,17 +42,22 @@ namespace ProxyEditAssistant.Models
             SizeKB = "N/A";
             TotalDuration = "N/A";
             PercentComplete = "N/A";
-            BuildOptions();
         }
 
-        private void BuildOptions()
+        private void CreateResolutions()
         {
-            Options = new ObservableCollection<OptionModel>();
-            Options.Add(new OptionModel { ResolutionText = "360p", Color = "#90caf9", BuildButtonText = "true", Resolution = new Resolution { Height = 360, Width = 360}});
-            Options.Add(new OptionModel { ResolutionText = "480p", Color = "#90caf9", BuildButtonText = "true", Resolution = new Resolution { Height = 480, Width = 480}});
-            Options.Add(new OptionModel { ResolutionText = "720p", Color = "#90caf9", BuildButtonText = "true", Resolution = new Resolution { Height = 480, Width = 720}});
-            Options.Add(new OptionModel { ResolutionText = "1080p", Color = "#90caf9", BuildButtonText = "true", Resolution = new Resolution { Height = 480, Width = 1080}});
+            _resolutions = new List<Resolution>();
+            _resolutions.Add(new Resolution { Height = 100, Width = 360});
+            _resolutions.Add(new Resolution { Height = 100, Width = 480});
+            _resolutions.Add(new Resolution { Height = 100, Width = 720});
+            _resolutions.Add(new Resolution { Height = 100, Width = 1080});
         }
+
+        private void BuildResolutionOptions()
+        {
+            var optionBuilder = new OptionBuilder(_resolutions);
+            var options = optionBuilder.BuildOptions();
+            Options = new ObservableCollection<OptionModel>(options); }
         
         public void GenerateProxies()
         {

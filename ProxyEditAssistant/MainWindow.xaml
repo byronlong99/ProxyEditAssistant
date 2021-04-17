@@ -6,7 +6,8 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
-        Height="550"
+        Height="400"
+        Title="Proxy Edit Studio"
         Width="1080">
     <Window.Resources>
         <Style TargetType="Label" x:Key="ProgressDetail">
@@ -33,7 +34,8 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="0" HorizontalAlignment="Center" Orientation="Horizontal">
-                        <Label Width="100" Height="70" Margin="0"
+                        <Label Width="100" Height="70" Margin="0" HorizontalContentAlignment="Center"
+                               VerticalContentAlignment="Center" FontWeight="SemiBold"
                                Background="#b6ffff" HorizontalAlignment="Center"
                                VerticalAlignment="Center" FontSize="23"
                                Content="{Binding ResolutionText}" />
@@ -94,7 +96,7 @@
                            Content="{Binding TotalFiles}" />
                     <Label Style="{StaticResource ProgressDetail}" Grid.Row="3" Grid.Column="0" Content="BitRate" />
                     <Label Style="{StaticResource ProgressDetail}" Grid.Row="3" Grid.Column="1"
-                           Content="{Binding BitRate}" />
+                           Content="{Binding Bitrate}" />
                     <Label Style="{StaticResource ProgressDetail}" Grid.Row="4" Grid.Column="0"
                            Content="Frames Per Second" />
                     <Label Style="{StaticResource ProgressDetail}" Grid.Row="4" Grid.Column="1"

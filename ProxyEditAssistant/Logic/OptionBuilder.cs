@@ -18,10 +18,10 @@ namespace ProxyEditAssistant.Logic
         
         public List<OptionModel> BuildOptions()
         {
-            _options.Add(new OptionModel { ResolutionText = "360p", Color = "#90caf9", BuildButtonText = "true", Resolution = new Resolution { Height = 360, Width = 360}});
-            _options.Add(new OptionModel { ResolutionText = "480p", Color = "#90caf9", BuildButtonText = "true", Resolution = new Resolution { Height = 480, Width = 480}});
-            _options.Add(new OptionModel { ResolutionText = "720p", Color = "#90caf9", BuildButtonText = "true", Resolution = new Resolution { Height = 480, Width = 720}});
-            _options.Add(new OptionModel { ResolutionText = "1080p", Color = "#90caf9", BuildButtonText = "true", Resolution = new Resolution { Height = 480, Width = 1080}});
+            _options.Add(new OptionModel { ResolutionColor = "#b6ffff", ResolutionText = "360p", Color = "#90caf9", BuildButtonText = "true", Resolution = new Resolution { Height = 360, Width = 360}});
+            _options.Add(new OptionModel { ResolutionColor = "#b6ffff", ResolutionText = "480p", Color = "#90caf9", BuildButtonText = "true", Resolution = new Resolution { Height = 480, Width = 480}});
+            _options.Add(new OptionModel { ResolutionColor = "#b6ffff",  ResolutionText = "720p", Color = "#90caf9", BuildButtonText = "true", Resolution = new Resolution { Height = 480, Width = 720}});
+            _options.Add(new OptionModel { ResolutionColor = "#b6ffff",  ResolutionText = "1080p", Color = "#90caf9", BuildButtonText = "true", Resolution = new Resolution { Height = 480, Width = 1080}});
 
             return _options;
         }

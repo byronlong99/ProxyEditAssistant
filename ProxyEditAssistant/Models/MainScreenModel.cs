@@ -7,14 +7,10 @@ using ProxyEditAssistant.Logic;
 
 namespace ProxyEditAssistant.Models
 {
-    public class Test
-    {
-        public string Resolution { get; set; }
-    }
-    
     public class MainScreenModel : ModelBase
     {
         private readonly ProxyBuilder _proxyBuilder;
+        private readonly IFileListBuilder _fileListBuilder;
         
         public string SourceDirectory { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
         public string FileCount { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
@@ -26,13 +22,12 @@ namespace ProxyEditAssistant.Models
         public string SizeKB { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
         public string TotalDuration { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
         public string PercentComplete { get => GetPropertyValue<string>(); set => SetPropertyValue(value); }
-        
-        public ObservableCollection<Test> Options { get; set; }
-    
+        public ObservableCollection<OptionModel> Options { get; set; }
         
         public MainScreenModel()
         {
-            _proxyBuilder = new ProxyBuilder(DisplayProgress);
+            _fileListBuilder = new FileListBuilder();
+            _proxyBuilder = new ProxyBuilder(DisplayProgress, _fileListBuilder);
             _proxyBuilder.SourceDirectory = @"TestVideos";
             FileCount = "N/A";
             TotalFiles = "N/A";
@@ -43,12 +38,16 @@ namespace ProxyEditAssistant.Models
             SizeKB = "N/A";
             TotalDuration = "N/A";
             PercentComplete = "N/A";
+            BuildOptions();
+        }
 
-            Options = new ObservableCollection<Test>();
-            Options.Add(new Test() { Resolution = "360p"});
-            Options.Add(new Test() { Resolution = "480p"});
-            Options.Add(new Test() { Resolution = "720p"});
-            Options.Add(new Test() { Resolution = "1080p"});
+        private void BuildOptions()
+        {
+            Options = new ObservableCollection<OptionModel>();
+            Options.Add(new OptionModel { ResolutionText = "360p", Color = "#90caf9", BuildButtonText = "true", Resolution = new Resolution { Height = 360, Width = 360}});
+            Options.Add(new OptionModel { ResolutionText = "480p", Color = "#90caf9", BuildButtonText = "true", Resolution = new Resolution { Height = 480, Width = 480}});
+            Options.Add(new OptionModel { ResolutionText = "720p", Color = "#90caf9", BuildButtonText = "true", Resolution = new Resolution { Height = 480, Width = 720}});
+            Options.Add(new OptionModel { ResolutionText = "1080p", Color = "#90caf9", BuildButtonText = "true", Resolution = new Resolution { Height = 480, Width = 1080}});
         }
         
         public void GenerateProxies()
@@ -57,7 +56,7 @@ namespace ProxyEditAssistant.Models
             task.Start();
         }
 
-        private void DisplayProgress(ProgressDetails message)
+        private void DisplayProgress(ProgressDetailsEvent message)
         {
             FileCount = message.CurrentFileNumber;
             TotalFiles = message.TotalFileCount;
